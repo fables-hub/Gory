@@ -1,0 +1,760 @@
+<style>
+/*--------------------
+Code by Fable. Do not use without permission.
+Do not remove code credit.
+--------------------*/
+
+:root {
+  --background: #090b16;
+  --container: #111529;
+  --panel: #171d3b;
+  --panel-alt: #291044;
+
+  --border: #293d91;
+
+  --text: #dce5ff;
+  --muted: #8995c5;
+  --header: #77dfff;
+
+  --accent: #e12bbd;
+  --accent-secondary: #77dfff;
+  --link: #ff65cf;
+
+  /* Fonts */
+  --font-m: 'Vazirmatn', sans-serif;
+  --font-h: 'Neon Android', sans-serif;
+  --font-f: 'Martian Mono', sans-serif;
+}
+
+body {
+  cursor:
+    url(https://66.media.tumblr.com/232c090ebdd37ae4bc17adb54e1e0344/tumblr_inline_ol4nwhvSwg1uxxza6_1280.png),
+    auto;
+  background: var(--background);
+  font-family: var(--font-m);
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  color: transparent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*---LAYOUT---*/
+
+#profile {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 950px;
+  height: 500px;
+  padding: 15px;
+  background: var(--container);
+  border: 1px solid var(--border);
+}
+
+#profile::before,
+#profile::after {
+  position: absolute;
+  font-family: var(--font-f);
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: var(--text-t);
+}
+
+#profile::before {
+  top: -15px;
+  left: 0px;
+  content: 'LIGHT IT UP / BURN IT DOWN / KILL THE KING / TAKE THE CROWN';
+}
+
+#profile::after {
+  bottom: -15px;
+  right: 0px;
+  content: 'NO TURNING BACK / IT’S A MOTHERFUCKING BLOOD PACT';
+}
+
+.character-image {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  background: black;
+  border: 1px solid var(--border);
+}
+
+.character-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  filter: grayscale(30%) contrast(1.05);
+}
+
+.image-default {
+  display: block;
+}
+
+.image-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.character-image:hover .image-hover {
+  opacity: 1;
+}
+
+/*======================
+LEFT SIDE
+=====================*/
+
+#stats {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 250px;
+  height: 220px;
+  padding: 5px;
+  background: var(--panel-alt);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 1px solid var(--border);
+}
+
+/*======================
+MIDDLE
+=====================*/
+
+#container-m {
+  position: absolute;
+  top: 10px;
+  left: 270px;
+  margin: auto;
+  width: 365px;
+  height: 480px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+section {
+  margin-bottom: 10px;
+  background: var(--panel);
+  padding: 10px;
+  text-align: justify;
+  border: 1px solid var(--border);
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+section h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 60px;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: var(--font-h);
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.7;
+}
+
+section h3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 12px;
+  padding-bottom: 7px;
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+}
+
+section h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.6;
+}
+
+/*======================
+DATA ELEMENTS
+======================*/
+
+.data-list {
+  display: grid;
+  gap: 4px;
+  line-height: 100%;
+}
+
+.data-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin-bottom: 5px;
+  gap: 5px;
+}
+
+.data-row:last-child {
+  margin-bottom: 0px;
+}
+
+.label,
+.value {
+  padding: 5px 8px;
+}
+
+.label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.value {
+  text-align: right;
+}
+
+/*======================
+RIGHT SIDE
+======================*/
+
+#container-r {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 305px;
+  height: 480px;
+  padding: 0 5px 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* SECTION HEADINGS */
+
+.stat-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.stat-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.6;
+}
+
+/* ATTRIBUTE CARDS */
+
+.attribute-section {
+  padding: 10px;
+  margin-bottom: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.attribute-section::last-child {
+  margin-bottom: 0px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.card {
+  width: auto;
+  height: 45px;
+  padding: 7px 3px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--accent-secondary);
+  background: var(--container);
+  transform: translateY(-2px);
+}
+
+.label-c {
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.value-c {
+  color: var(--accent-secondary);
+  font-family: var(--font-f);
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* SKILLS SECTION */
+
+.skill-section {
+  padding: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 12px;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+  padding: 8px 2px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.skill span:first-child {
+  white-space: nowrap;
+}
+
+.dots {
+  color: var(--accent-secondary);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/*======================
+TYPOGRAPHY
+======================*/
+
+b {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+i {
+  color: var(--accent);
+}
+
+u {
+  text-decoration: underline dotted 1px;
+  color: var(--accent);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+p {
+  text-indent: 25px;
+  line-height: 1.4;
+}
+
+p::first-letter {
+  font-size: 20px;
+  color: var(--white);
+  letter-spacing: 0px;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  line-height: 1;
+}
+
+ul {
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+li::last-child {
+  margin-bottom: 0px;
+}
+
+/*------------------------------
+CREDIT - DO NOT REMOVE
+------------------------------*/
+
+.code {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  width: 50px;
+  height: 20px;
+  line-height: 1;
+  padding: 4px;
+  background: var(--panel);
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.code-link {
+  font-size: 90%;
+  font-weight: bold;
+  text-transform: none;
+  color: var(--link);
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+.code-link:hover {
+  color: var(--text);
+}
+
+
+</style>
+
+<body>
+
+<!---TEXT--->
+<link href="https://fonts.cdnfonts.com/css/neon-android" rel="stylesheet" />
+<link href="https://fonts.cdnfonts.com/css/martian-mono" rel="stylesheet" />
+<link href="https://fonts.cdnfonts.com/css/vazirmatn" rel="stylesheet" />
+
+<div id="profile">
+  <!-- IMAGE -->
+
+  <div class="character-image">
+    <img
+      src="https://i.pinimg.com/736x/c1/34/22/c13422fef8d2fc534802c3ce5140c478.jpg"
+      alt="Character portrait"
+      class="image-default"
+    />
+
+    <img
+      src="https://i.pinimg.com/1200x/91/92/ce/9192ceea789ca9cb33881884d2ec9247.jpg"
+      alt="Character portrait alternate"
+      class="image-hover"
+    />
+  </div>
+
+  <!-- CHARACTER STATS -->
+
+  <div id="stats">
+    <div class="data-list">
+      <div class="data-row">
+        <span class="label">Name</span>
+        <span class="value">Gregorio Barbiere</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Nicknames</span>
+        <span class="value">Gory, Barba</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Age</span>
+        <span class="value">Physically mid-30's</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Clan</span>
+        <span class="value">Brujah</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Alignment</span>
+        <span class="value">Anarchs</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Generation</span>
+        <span class="value">Ninth</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Hunter Type</span>
+        <span class="value">Siren</span>
+      </div>
+
+      <div class="data-row">
+        <span class="label">Marital Status</span>
+        <span class="value">Single</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIDDLE CONTAINER -->
+
+  <div id="container-m">
+    <section id="one">
+      <h2>Heavy is the head that hits the fucking ground;</h2>
+
+      <p>
+        Born in Florence, Italy, Gregorio grew up in a tumultuous household; for
+        as much affection there was in the home, there was just as much
+        resentment. Gregorio's mortal existence ended when a Brujah Embraced him
+        against his will, condemning him to an eternity he never wanted. This
+        was not his sire's first transgression against the Prince of Florence,
+        but it would be his last; the Prince ordered Gregorio's sire diablarized
+        at Gregorio's maw.
+      </p>
+
+      <p>
+        While Gregorio has followed the code of every Prince he's come across,
+        his existence is ultimately for himself. With dreams of ruling his own
+        city one day, Gregorio mostly follows his own whims and wishes, toeing
+        the line between his otherworldly etiquette and his own caprices and
+        inclinations.
+      </p>
+    </section>
+
+    <section id="trivia">
+      <h3>Kindred Inclinations</h3>
+
+      <ul>
+        <li>
+          <b>Bane - Violent Temper:</b>
+          There is a perpetual rage simmering in the depths of Gory's mind; the
+          right provokation will send him into a violent rage, making him
+          ultra-violent.
+        </li>
+
+        <li>
+          <b>Compulsion - Rebellion:</b>
+          Gory isn't a fan of the status quo, and sometimes, the compulsion to
+          go against orders or expectations is too strong for him to resist. He
+          will not relent until he feels he's accomplished his rebellion.
+        </li>
+
+        <li>
+          <b>Archetype - Carthage Denier:</b>
+          Though he doesn't believe it'll ever happen, Gory is drawn to the idea
+          of Kindred and humans living in a utopia.
+        </li>
+       <li>
+          Gory dislikes excessive formality and rigid social etiquette, but he is careful to follow Masquerade rules-- not out of loyalty but for survival.
+        </li>
+
+      </ul>
+    </section>
+
+    <section>
+      <h3>Romantic Inclinations</h3>
+
+      <ul>
+        <li>
+          Gory enjoys flirting, even when he has absolutely no intention of
+          pursuing someone.
+        </li>
+        <li>When it comes to attraction beyond necessity, Gory is more attracted to humans than Kindred; he's drawn to those who show concepts of "purity", something "clean" and "untouched" for him to dismantle at his own leisure.</li>
+        <li>In the rare event it occurs, Gory has a tendency to become possessive when genuinely attached.</li>
+        <li>He enjoys the chase almost as much as the conquest.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Trivia</h3>
+
+      <ul>
+        <li>
+          Gory has an almost effortless ability to make strangers feel like old
+          friends.
+        </li>
+        <li>
+          Gory has very little patience for people who take themselves too seriously.
+        </li>
+          <li>Gory is an avid smoker; it doesn't actually do anything for him physically, he just likes the aesthetic.
+        </li>
+        <li>
+Gory appreciates classical Italian culture— architecture, music, art and literature.
+        </li>
+        <li>
+          Gory also holds a fondness for modern technology, though some of it is
+          harder for him to use as a vampire. He's found ways to adapt to this.
+        </li>
+        <li>
+          Gory can typically identify a perfume or cologne just by smelling it.
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- RIGHT CONTAINER -->
+
+  <div id="container-r">
+    <!-- ATTRIBUTES -->
+
+    <div class="attribute-section">
+      <h2 class="stat-heading">Attributes</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="label-c">Strength</div>
+          <div class="value-c">★★☆☆☆</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Dexterity</div>
+          <div class="value-c">★★★★★</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Stamina</div>
+          <div class="value-c">★★★★☆</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Charisma</div>
+          <div class="value-c">★★★★★</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Manipulation</div>
+          <div class="value-c">★★★☆☆</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Composure</div>
+          <div class="value-c">★☆☆☆☆</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Intelligence</div>
+          <div class="value-c">★★★☆☆</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Wits</div>
+          <div class="value-c">★★★★★</div>
+        </div>
+
+        <div class="card">
+          <div class="label-c">Resolve</div>
+          <div class="value-c">★★☆☆☆</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABILITIES -->
+
+    <div class="skill-section">
+      <h2 class="stat-heading">Abilities</h2>
+
+      <div class="skills">
+        <div class="skill">
+          <span>Athletics</span>
+          <span class="dots">●○○○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Awareness</span>
+          <span class="dots">●●○○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Brawl</span>
+          <span class="dots">●○○○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Insight</span>
+          <span class="dots">●●●○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Leadership</span>
+          <span class="dots">●●●○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Melee</span>
+          <span class="dots">●○○○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Persuasion</span>
+          <span class="dots">●●●●○</span>
+        </div>
+
+        <div class="skill">
+          <span>Politics</span>
+          <span class="dots">●●●○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Streetwise</span>
+          <span class="dots">●●○○○</span>
+        </div>
+
+        <div class="skill">
+          <span>Technology</span>
+          <span class="dots">●●○○○</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---CREDIT - DO NOT REMOVE--->
+
+<div class="code">
+© Fable
+</div>
+
+</body>
